@@ -25,7 +25,9 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${courgette.className} antialiased`} >
         <Header />
-        {children}
+        <main className='p-5 mx-auto max-w-screen-lg'>
+          {children}
+        </main>
       </body>
     </html>
   );
