@@ -1,0 +1,6 @@
+.stock-table, .stock-table td, .stock-table th {
+    @apply border-collapse 
+         border-black
+           border-2 
+           p-1
+}
