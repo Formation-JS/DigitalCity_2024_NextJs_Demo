@@ -20,3 +20,12 @@ pnpm i @eslint/js @eslint/eslintrc --save-dev
 ```
 pnpm create next-app@latest
 ```
+
+## Routes du demo
+```
+ /                      HomePage
+ /product               Liste des produits
+ /product/add           Formulaire d'ajout de produit
+ /product/detail/[id]   Detail d'un produit
+ /stock                 Transactions du stock (filter -> query)
+ /stock/add             Formulaire d'ajout de transaction

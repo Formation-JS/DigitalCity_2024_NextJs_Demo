@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import NavLink from '../NavLink/NavLink';
 
 
 export default function Header() {
@@ -12,7 +13,8 @@ export default function Header() {
                 width={300}
                 height={280}
             />            
-            <p className='text-3xl self-center'>Demo Next.js</p>
+            <p className='text-4xl self-center me-4'>Next.js</p>
+            <NavLink />
         </header>
     );
 }
