@@ -1,8 +1,10 @@
 'use server';
 
 import { Stock } from '@/types/stock';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchStock(offset: number, limit:number) {
+    noStore();
 
     //! Ne pas faire ceci en prod! (╯°□°）╯︵ ┻━┻
     await new Promise((resolve) => setTimeout(resolve, 100));
@@ -15,6 +17,8 @@ export async function fetchStock(offset: number, limit:number) {
 }
 
 export async function fetchStockCount() {
+    noStore();
+    
     const response = await fetch('http://localhost:4242/stocks?_start=0&_limit=0');
     return parseInt(response.headers.get('X-Total-Count') ?? '0');
 }
