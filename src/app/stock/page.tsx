@@ -13,7 +13,7 @@ type StockPageProps = {
 export default async function StockPage({ searchParams }: StockPageProps) {
 
     // Récuperation des "searchParams" depuis la route
-    const {offset, limit} = await searchParams;
+    const { offset, limit } = await searchParams;
 
     const offsetOfPage = parseInt(offset ?? '0');
     const nbRowByPage = parseInt(limit ?? '10');
@@ -30,9 +30,11 @@ export default async function StockPage({ searchParams }: StockPageProps) {
         params.set('limit', nbRowByPage.toString());
 
         btnPaginations.push(
-            <button key={i} className='px-2 py-1 bg-purple-200 rounded'>
-                <Link href={'?' + params} >{i}</Link>
-            </button>
+            <Link key={i} href={'?' + params} >
+                <button className='px-2 py-1 bg-purple-200 rounded'>
+                    {i}
+                </button>
+            </Link>
         );
     }
 
