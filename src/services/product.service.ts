@@ -66,11 +66,11 @@ export async function fetchLastProductAdded() {
 }
 
 //! Ajouter un produit
-export async function createProduct(product : ProdutFormData) {
+export async function createProduct(product: ProdutFormData) {
 
     //! Ne pas faire ceci en prod! (╯°□°）╯︵ ┻━┻
     await new Promise((resolve) => setTimeout(resolve, 500));
-    
+
     const body = {
         ...product,
         isActif: true
@@ -86,10 +86,18 @@ export async function createProduct(product : ProdutFormData) {
     });
 
     // Response de l'id
-    const data: {id: number} = await result.json();
-    return data.id
+    const data: { id: number; } = await result.json();
+    return data.id;
 }
 
 //? Obtenir le detail d'un produit
+export async function fetchProductById(productId: number) {
+
+    const response = await fetch('http://localhost:4242/products/' + productId);
+    const data: Partial<Product> = await response.json();
+
+    return data.id == undefined ? null : data as Product; 
+}
+
 
 //? Obtenir la liste des produit (pagination)
