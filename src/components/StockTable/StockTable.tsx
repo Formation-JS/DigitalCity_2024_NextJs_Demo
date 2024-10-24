@@ -21,7 +21,7 @@ export default function StockTable({ stockRows }: StockTableProps) {
                     <tr key={id}>
                         <td>{productId}</td>
                         <td>{quantity}</td>
-                        <td>{movementDate}</td>
+                        <td>{new Date(movementDate).toLocaleString('fr-be')}</td>
                     </tr>
                 ))}
             </tbody>
