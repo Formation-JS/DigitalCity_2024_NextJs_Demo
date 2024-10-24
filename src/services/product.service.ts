@@ -1,6 +1,6 @@
 'use server';
 
-import { Product, ProductWithStock } from '@/types/product';
+import { Product, ProductWithStock, ProdutFormData } from '@/types/product';
 
 
 type ProductQuantity = { product: ProductWithStock, quantity: number; };
@@ -65,7 +65,30 @@ export async function fetchLastProductAdded() {
     return data[0] ?? null;
 }
 
-//? Ajouter un produit
+//! Ajouter un produit
+export async function createProduct(product : ProdutFormData) {
+
+    //! Ne pas faire ceci en prod! (╯°□°）╯︵ ┻━┻
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
+    const body = {
+        ...product,
+        isActif: true
+    };
+
+    // Requete POST
+    const result = await fetch('http://localhost:4242/products', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+
+    // Response de l'id
+    const data: {id: number} = await result.json();
+    return data.id
+}
 
 //? Obtenir le detail d'un produit
 
