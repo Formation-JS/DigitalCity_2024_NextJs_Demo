@@ -101,3 +101,10 @@ export async function fetchProductById(productId: number) {
 
 
 //? Obtenir la liste des produit (pagination)
+export async function fetchProducts() {
+
+    const response = await fetch('http://localhost:4242/products/');
+    const data: Product[] = await response.json();
+
+    return data;
+}

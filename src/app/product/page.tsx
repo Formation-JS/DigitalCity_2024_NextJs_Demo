@@ -12,7 +12,10 @@ export default async function ProductPage() {
     <div className='flex flex-col gap-3'>
 
       <h1 className='text-5xl mb-5'>Produit</h1>
-      <Link className='bg-purple-200 w-fit px-2 py-1 rounded-xl text-red-800' href='/product/add'>Nouveau produit</Link>
+      <div className='flex flex-row gap-2'>
+        <Link className='bg-purple-200 w-fit px-2 py-1 rounded-xl text-red-800' href='/product/add'>Nouveau produit</Link>
+        <Link className='bg-purple-200 w-fit px-2 py-1 rounded-xl text-red-800' href='/product/list'>Liste des produits</Link>
+      </div>
 
       <div className='flex flex-col gap-1'>
         <h2 className='text-2xl text-red-800'>Dernier produit ajouté</h2>
