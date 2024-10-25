@@ -1,4 +1,3 @@
-import ProductInfo from '@/components/ProductInfo/ProductInfo';
 import ProductInfoSkeleton from '@/components/ProductInfo/ProductInfoSkeleton';
 import ProductHigherStock from '@/containers/Product/ProductHigherStock';
 import ProductLastAdd from '@/containers/Product/ProductLastAdd';

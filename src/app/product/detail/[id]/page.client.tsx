@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
                 setProduct(data);
                 setLoading(false);
             });
-    }, [id]);
+    }, [productId]);
 
     if (isLoading) { return <h1 className='text-5xl mb-5'>Loading...</h1> }
 
