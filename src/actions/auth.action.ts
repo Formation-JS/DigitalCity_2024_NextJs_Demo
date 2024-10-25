@@ -1,5 +1,8 @@
 'use server';
 
+import { userLogin, userRegister } from '@/services/auth.service';
+import { getSession } from '@/utils/session.utils';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export type AuthFormState = {
@@ -20,11 +23,19 @@ export async function authRegisterAction(state: AuthFormState, formData: FormDat
         };
     }
 
-    // TODO Appeler le service
+    // Service pour créer le compte
+    const token = await userRegister(data.email, data.password);
+    console.log('Register : ' + token);
 
-    // TODO Créer la session
+    // Créer la session
+    const session = await getSession();
+    session.data = {
+        token, email: data.email
+    };
+    await session.save();
 
     // Redirection vers la page d'acceuil
+    revalidatePath('/');
     redirect('/');
 } 
 
@@ -40,11 +51,24 @@ export async function authLoginAction(state: AuthFormState, formData: FormData) 
             message: 'Donnée invalide !'
         };
     }
+    
+    // Service pour se connecter
+    const token = await userLogin(data.email, data.password);
+    console.log('Login : ' + token);
 
-    // TODO Check le compte (via le service)
-
-    // TODO Créer la session
+    // Créer la session
+    const session = await getSession();
+    session.data = {
+        token, email: data.email
+    };
+    await session.save();
 
     // Redirection vers la page d'acceuil
+    revalidatePath('/');
     redirect('/');
 } 
+
+export async function authLogoutAction() {
+    const session = await getSession();
+    session.destroy();
+}
