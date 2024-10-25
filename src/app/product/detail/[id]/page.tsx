@@ -1,3 +1,4 @@
+import ProductStockForm from '@/containers/Product/ProductStockForm';
 import { fetchProductById } from '@/services/product.service';
 import { notFound } from 'next/navigation';
 
@@ -20,6 +21,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         <>
             <h1 className='text-5xl mb-5'>Detail d'un produit...</h1>
             <p>{product.label} • {product.marque}</p>
+            <hr />
+            <h2 className='text-3xl mt-2' >Gestion du stock</h2>
+            <ProductStockForm productId={productId} />
         </>
     );
 }

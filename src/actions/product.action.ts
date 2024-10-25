@@ -31,7 +31,6 @@ export type ProductFormState = {
     message: string | null;
 };
 
-
 export async function addNewProduct(state: ProductFormState, formData: FormData): Promise<ProductFormState> {
 
     // Validation
