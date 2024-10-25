@@ -8,12 +8,16 @@ type ProductDetailPageProps = {
     }>;
 };
 
+export async function generateStaticParams() {
+    return [{ id: '1' }, { id: '2' }, { id: '3' }]
+}
+
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
 
     const productId = parseInt((await params).id);
     const product = await fetchProductById(productId);
 
-    if(!product) {
+    if (!product) {
         notFound();
     }
 
