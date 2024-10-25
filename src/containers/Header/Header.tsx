@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import NavLink from '../NavLink/NavLink';
+import AuthButtons from '../Auth/AuthButtons';
 
 
 export default function Header() {
@@ -14,7 +15,10 @@ export default function Header() {
                 height={280}
             />            
             <p className='text-4xl self-center me-4'>Next.js</p>
-            <NavLink />
+            <div className='flex-grow flex'>
+                <NavLink />
+            </div>
+            <AuthButtons />
         </header>
     );
 }
