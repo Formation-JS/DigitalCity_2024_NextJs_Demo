@@ -2,7 +2,6 @@
 
 import { userLogin, userRegister } from '@/services/auth.service';
 import { getSession } from '@/utils/session.utils';
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export type AuthFormState = {
@@ -35,7 +34,6 @@ export async function authRegisterAction(state: AuthFormState, formData: FormDat
     await session.save();
 
     // Redirection vers la page d'acceuil
-    revalidatePath('/');
     redirect('/');
 } 
 
@@ -64,11 +62,16 @@ export async function authLoginAction(state: AuthFormState, formData: FormData) 
     await session.save();
 
     // Redirection vers la page d'acceuil
-    revalidatePath('/');
     redirect('/');
 } 
 
 export async function authLogoutAction() {
     const session = await getSession();
     session.destroy();
+}
+
+
+export async function authSessionForClient() {
+    const session = await getSession();
+    return session.data;
 }
