@@ -54,6 +54,12 @@ export async function authLoginAction(state: AuthFormState, formData: FormData) 
     const token = await userLogin(data.email, data.password);
     console.log('Login : ' + token);
 
+    if(!token) {
+        return {
+            message: 'Crédential invalide !'
+        };
+    }
+
     // Créer la session
     const session = await getSession();
     session.data = {
