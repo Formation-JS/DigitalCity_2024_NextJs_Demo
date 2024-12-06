@@ -74,6 +74,9 @@ export async function authLoginAction(state: AuthFormState, formData: FormData) 
 export async function authLogoutAction() {
     const session = await getSession();
     session.destroy();
+    
+    // Redirection vers la page d'acceuil
+    redirect('/');
 }
 
 
