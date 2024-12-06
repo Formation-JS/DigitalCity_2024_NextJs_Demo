@@ -3,6 +3,19 @@
 import { Stock } from '@/types/stock';
 import { connection } from 'next/server';
 
+export async function addStock(productId: number, quantity: number) {
+
+    const movementDate = new Date().toISOString();
+
+    await fetch('http://localhost:4242/stocks', {
+        method: 'POST',
+        body: JSON.stringify({ productId, quantity, movementDate }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
 export async function fetchStock(offset: number, limit:number) {
     await connection();
 

@@ -1,5 +1,7 @@
 'use server';
 
+import { addStock } from '@/services/stock.service';
+
 // import { redirect } from 'next/navigation';
 
 export type ProductStockFormState = {
@@ -19,7 +21,8 @@ export async function addStockProduct(
         return { message: 'La quantité ne peut pas être zéro' };
     }
 
-    // TODO Utiliser le service pour ajouter un stock !
+    // Ajouter une ligne de stock !
+    await addStock(productId, quantity);
     console.log('Gestion de stock -> Id : ' + productId + ', Quantité : ' + quantity);
 
     // redirect('/stock');
