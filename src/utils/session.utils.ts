@@ -1,8 +1,8 @@
 'use server';
 
 import { getIronSession } from 'iron-session';
-import { unstable_noStore as noStore } from 'next/cache';
 import { cookies } from 'next/headers';
+import { connection } from 'next/server';
 
 export type SessionData = {
     data?: {
@@ -12,7 +12,7 @@ export type SessionData = {
 }
 
 export async function getSession() {
-    noStore()
+    await connection();
 
     const sessionCookie = await cookies();
 
